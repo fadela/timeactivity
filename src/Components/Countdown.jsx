@@ -25,7 +25,6 @@ class Countdown extends Component {
     }
    }
 
-   
    startTimer(){
        this.timer = setInterval(() => {
         var newCount = this.state.count -1 ;

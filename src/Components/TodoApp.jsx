@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './Nav';
 import TodoList from './TodoList';
+import AddTodo from './AddTodo';
 
 class TodoApp extends Component {
     state = { 
@@ -11,12 +12,17 @@ class TodoApp extends Component {
            {id:4, text:'Painting with pastel'}
         ]
      };
+
+     handleAddTodo(text) {
+        alert('new todo :' + text);
+     }
     render() { 
         let {todos} = this.state;
 
         return ( <div>
             <Nav/>
             <TodoList todos={todos}/>
+            <AddTodo onSetItem={this.handleAddTodo}/>
         </div> );
     }
 }
