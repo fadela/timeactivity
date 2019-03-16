@@ -6,6 +6,7 @@ import Countdown from './Components/Countdown';
 import Main from './Components/Main';
 import Timer from './Components/Timer';
 import Counters from './Components/Counters';
+import TodoApp from './Components/TodoApp';
 
 class App extends Component {
   
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path="/timer" component={Timer} />
             <Route exact path="/countdown" component={Countdown} />
             <Route exact path="/counters" component={Counters} />
+            <Route exact path="/todoapp" component={TodoApp} />
           </div>
         </Router>
       </div>

@@ -24,6 +24,9 @@ const Nav = () => {
       <li className="nav-item">
         <Link className="nav-link" to="/counters">Counter</Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/todoapp">TodoApp</Link>
+      </li>
     </ul>
     <span className="navbar-text my-2 my-lg-0">
       <h5>Created by <a href="https://github.com/fadela">fadela</a></h5>
