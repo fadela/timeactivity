@@ -3,21 +3,30 @@ import Nav from './Nav';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import TodoSearch from './TodoSearch';
+import  uuid from 'node-uuid'
 
 class TodoApp extends Component {
     state = { 
         showCompleted: false,
         searchText:'',
         todos: [
-           {id:1, text:'walk the dog'},
-           {id:2, text:'Read the book'},
-           {id:3, text:'Learnig React'},
-           {id:4, text:'Painting with pastel'}
+           {id:uuid(), text:'walk the dog'},
+           {id:uuid(), text:'Read the book'},
+           {id:uuid(), text:'Learnig React'},
+           {id:uuid(), text:'Painting with pastel'}
         ]
      };
 
-     handleAddTodo(text) {
-        alert('new todo :' + text);
+     handleAddTodo = (text) =>{
+        this.setState({
+            todos : [
+                ...this.state.todos,
+                {
+                    id:uuid(), 
+                    text
+                }
+            ]
+        });
      }
 
      handleSearch = (showCompleted, searchText) =>{
@@ -25,7 +34,6 @@ class TodoApp extends Component {
             showCompleted,
             searchText
         })
-        console.log(showCompleted, searchText)
      }
     render() { 
         let {todos} = this.state;
