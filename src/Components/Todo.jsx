@@ -11,7 +11,7 @@ class Todo extends Component {
         }}>
             <input type="checkbox" checked={completed}/>
             {text}
-            
+           
         </div> );
     }
 }
