@@ -12,15 +12,16 @@ class TodoApp extends Component {
     state = { 
         showCompleted: false,
         searchText:'',
-        todos: [
-          TodoAPI.getTodos()
-        ]
+        todos: TodoAPI.getTodos()
      };
-     componentDidUpdate() {
-         TodoAPI.setTodos(this.state.todos);
-         
+     componentDidUpdate(prevProps, prevState) {
+        if (this.state.countdownStatus !== prevState.countdownStatus){
+            this.setState({
+                todos: TodoAPI.setTodos(this.state.todos)
+            })
+        }
      }
-
+     
      handleAddTodo = (text) =>{
         this.setState({
             todos : [
@@ -51,12 +52,14 @@ class TodoApp extends Component {
         this.setState({todos: updatedTodos});
      }
     render() { 
-        let {todos} = this.state;
+        
+        let {todos, showCompleted, searchText} = this.state;
+        let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText)
 
         return ( <div>
             <Nav/>
             <TodoSearch onSearch={this.handleSearch}/>
-            <TodoList todos={todos} onToggle={this.handleToggle}/>
+            <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
             <AddTodo onSetItem={this.handleAddTodo}/>
         </div> );
     }
