@@ -18,13 +18,20 @@ var reducer = (state = stateDefault, action) => {
            }
 }
 
-let store = redux.createStore(reducer);
+let store = redux.createStore(reducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+// Subscribe to changes
+store.subscribe ( () => {
+   let state = store.getState();
+   console.log('searchText is :', state.searchText);
+
+});
 
 let currentState = store.getState();
 console.log('currentState', currentState);
 
 store.dispatch({
         type: 'CHANGE_SEARCH_TEXT',
-        searchText: 'work'
+        searchText: 'coding'
 })
-console.log('the new searchText is:', store.getState())

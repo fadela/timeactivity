@@ -12,7 +12,7 @@ console.log('Starting with redux');
 
 let reducer = (state = {name: 'Anonymous'}, action) => {
   // state = state || {name: 'Anonymous'}
-  
+
   switch (action.type) {
     case 'CHANGE_NAME':
       return {
@@ -24,13 +24,29 @@ let reducer = (state = {name: 'Anonymous'}, action) => {
   }
   return state;
 };
-let store = redux.createStore(reducer);
+let store = redux.createStore(reducer, 
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
+//Subscribe to changes
+let unsubscribe =store.subscribe ( () => {
+  let state = store.getState();
+
+  console.log('Name is', state.name)
+})
 let currentState = store.getState();
 console.log('currentState', currentState);
+
+// unsubscribe();
 
 store.dispatch({
   type:'CHANGE_NAME',
   name: 'fadela'
 });
-console.log('Name should be fadela', store.getState());
+
+store.dispatch({
+  type: 'CHANGE_NAME',
+  name: 'Emily'
+});
+
+
+
