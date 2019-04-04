@@ -12,10 +12,25 @@ console.log('Starting with redux');
 
 let reducer = (state = {name: 'Anonymous'}, action) => {
   // state = state || {name: 'Anonymous'}
-
+  
+  switch (action.type) {
+    case 'CHANGE_NAME':
+      return {
+        ...state,
+        name: action.name
+      };
+    default:
+        return state;  
+  }
   return state;
 };
 let store = redux.createStore(reducer);
 
 let currentState = store.getState();
 console.log('currentState', currentState);
+
+store.dispatch({
+  type:'CHANGE_NAME',
+  name: 'fadela'
+});
+console.log('Name should be fadela', store.getState());
