@@ -19,7 +19,7 @@ class CountdownForm extends Component {
             <form ref="form" onSubmit={this.onSubmit} className="countdown-form">
                 <input type="text" className="form-control"  ref="seconds" placeholder="Enter times in seconds"/>
                 
-                <button className="btn btn-outline-dark btn-block ">Start</button>
+                <button className="btn-sm btn-outline-dark btn-block ">Start</button>
             </form>
         </div> );
     }

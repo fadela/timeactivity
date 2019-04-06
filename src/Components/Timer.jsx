@@ -38,7 +38,7 @@ class Timer extends Component {
     render() { 
         return ( 
             <div>
-                <Nav/>
+                
                 <Clock totalSeconds={this.state.count}/>
                 <Controls countdownStatus={this.state.countdownStatus} onStatusChange={this.handleStatusChange}/>
             </div>

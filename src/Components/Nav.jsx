@@ -16,12 +16,6 @@ const Nav = () => {
         <Link className="nav-link" to="/">Home </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/timer">Timer</Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/countdown">Countdown</Link>
-      </li>
-      <li className="nav-item">
         <Link className="nav-link" to="/counters">Counter</Link>
       </li>
       <li className="nav-item">

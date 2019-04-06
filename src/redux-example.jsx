@@ -9,8 +9,16 @@ console.log('Starting with redux');
    3. we want to avoid promises and asychronous calls
      your functions should be sychronous
 */}
+let stateDefault ={
+  name: 'Anonymous',
+  hobbies: [],
+  movies: []
+};
 
-let reducer = (state = {name: 'Anonymous'}, action) => {
+let nextHobbyId= 1 ;
+let nextMovieId= 1 ;
+
+let reducer = (state = stateDefault, action) => {
   // state = state || {name: 'Anonymous'}
 
   switch (action.type) {
@@ -19,10 +27,42 @@ let reducer = (state = {name: 'Anonymous'}, action) => {
         ...state,
         name: action.name
       };
+    case 'ADD_HOBBY' :
+      return{
+        ...state,
+        hobbies: [
+          ...state.hobbies,
+          {
+            id: nextHobbyId++,
+            hobby: action.hobby
+          }
+        ]
+      }  
+    case 'REMOVE_HOBBY' : 
+      return {
+        ...state,
+        hobbies: state.hobbies.filter( (hobby) => hobby.id !== action.id)
+      }  
+    case 'ADD_MOVIE'  :
+      return{
+        ...state,
+        movies: [
+          ...state.movies,
+          {
+            id: nextMovieId++,
+            title: action.title,
+            genre: action.genre
+          }
+        ]
+      }
+    case 'REMOVE_MOVIE' :
+      return {
+        ...state,
+        movies: state.movies.filter( (movie) => movie.id !== action.id)
+      }    
     default:
         return state;  
   }
-  return state;
 };
 let store = redux.createStore(reducer, 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
@@ -31,12 +71,15 @@ let store = redux.createStore(reducer,
 let unsubscribe =store.subscribe ( () => {
   let state = store.getState();
 
-  console.log('Name is', state.name)
+  console.log('Name is', state.name);
+  console.log('New state', store.getState())
 })
+// unsubscribe();
+
 let currentState = store.getState();
 console.log('currentState', currentState);
 
-// unsubscribe();
+
 
 store.dispatch({
   type:'CHANGE_NAME',
@@ -44,9 +87,43 @@ store.dispatch({
 });
 
 store.dispatch({
+  type: 'ADD_HOBBY',
+  hobby: 'Running'
+});
+
+store.dispatch({
+  type: 'ADD_HOBBY',
+  hobby: 'walking'
+});
+
+store.dispatch({
+  type: 'REMOVE_HOBBY',
+  id: 2
+})
+
+store.dispatch({
   type: 'CHANGE_NAME',
   name: 'Emily'
 });
+
+store.dispatch ({
+  type: 'ADD_MOVIE',
+  title: 'Jumanji',
+  genre: 'Action'
+});
+
+store.dispatch({
+  type: 'ADD_MOVIE',
+  title: 'Friends',
+  genre: 'Action'
+});
+
+store.dispatch({
+  type: 'REMOVE_MOVIE',
+  id: 1
+});
+
+
 
 
 

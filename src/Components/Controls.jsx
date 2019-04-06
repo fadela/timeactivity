@@ -10,9 +10,9 @@ class Controls extends Component {
      }
      renderStartStopsButton = () =>{
         if(this.props.countdownStatus === 'started') {
-            return <button type="button" class="btn btn-outline-warning" onClick={this.onStatuschange('paused')}>Pause</button>
+            return <button type="button" class="btn-sm btn-outline-warning" onClick={this.onStatuschange('paused')}>Pause</button>
         } else if (this.props.countdownStatus !=='started') {
-            return <button type="button" class="btn btn-outline-info" onClick={this.onStatuschange('started')}>start</button>
+            return <button type="button" class="btn-sm btn-outline-info" onClick={this.onStatuschange('started')}>start</button>
         }
     }
    
@@ -20,7 +20,7 @@ class Controls extends Component {
     
         return ( <div className="controls">
             {this.renderStartStopsButton()}
-            <button type="button" class="btn btn-outline-danger "onClick={this.onStatuschange('stopped')}>clear</button>
+            <button type="button" class="btn-sm btn-outline-danger "onClick={this.onStatuschange('stopped')}>clear</button>
         </div> );
     }
 }

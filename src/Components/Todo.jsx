@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import Timer from './Timer'
+import Countdown from './Countdown';
 class Todo extends Component {
     state = {  }
     render() { 
@@ -11,6 +12,12 @@ class Todo extends Component {
         }}>
             <input type="checkbox" checked={completed}/>
             {text}
+            <div className="card" >
+              <div class="card-body">
+               <h5 class="card-title">{text}</h5>
+               <Timer/>
+              </div>  
+            </div>
            
         </div> );
     }

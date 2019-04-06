@@ -54,8 +54,7 @@ class Countdown extends Component {
         let {count, countdownStatus} = this.state;
         return ( 
             <div>
-                <Nav/>
-                
+               
                 <Clock totalSeconds={count}/>
                 <div className="col-md-6 offset-md-3">
                 {countdownStatus !== 'stopped' ?

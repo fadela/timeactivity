@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './redux-todo-example'
+import './redux-example'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
