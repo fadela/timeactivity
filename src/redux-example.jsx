@@ -9,62 +9,9 @@ console.log('Starting with redux');
    3. we want to avoid promises and asychronous calls
      your functions should be sychronous
 */}
-let stateDefault ={
-  name: 'Anonymous',
-  hobbies: [],
-  movies: []
-};
 
-let nextHobbyId= 1 ;
-let nextMovieId= 1 ;
-
- {/*let oldReducer = (state = stateDefault, action) => {
-  // state = state || {name: 'Anonymous'}
-
-  switch (action.type) {
-    case 'CHANGE_NAME':
-      return {
-        ...state,
-        name: action.name
-      };
-    case 'ADD_HOBBY' :
-      return{
-        ...state,
-        hobbies: [
-          ...state.hobbies,
-          {
-            id: nextHobbyId++,
-            hobby: action.hobby
-          }
-        ]
-      }  
-    case 'REMOVE_HOBBY' : 
-      return {
-        ...state,
-        hobbies: state.hobbies.filter( (hobby) => hobby.id !== action.id)
-      }  
-    case 'ADD_MOVIE'  :
-      return{
-        ...state,
-        movies: [
-          ...state.movies,
-          {
-            id: nextMovieId++,
-            title: action.title,
-            genre: action.genre
-          }
-        ]
-      }
-    case 'REMOVE_MOVIE' :
-      return {
-        ...state,
-        movies: state.movies.filter( (movie) => movie.id !== action.id)
-      }    
-    default:
-        return state;  
-  }
-};
-*/}
+//Name reducer and action generator
+//--------------------
 
 let nameReducer = (state= 'Anonymous', action) => {
   switch(action.type) {
@@ -75,6 +22,17 @@ let nameReducer = (state= 'Anonymous', action) => {
   }
 }
 
+let changeName = (name) => {
+  return {
+    type: 'CHANGE_NAME',
+    name
+  }
+}
+//Hobbies reducer and action generator
+//--------------------
+
+
+let nextHobbyId= 1 ;
 let hobbiesReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_HOBBY' : 
@@ -92,6 +50,26 @@ let hobbiesReducer = (state = [], action) => {
   }
 }
 
+let addHobby = (hobby) => {
+  return {
+    type: 'ADD_HOBBY',
+    hobby
+  }
+}
+
+let removeHobby = (id) => {
+  return {
+    type: 'REMOVE_HOBBY',
+    id
+  }
+}
+
+
+//Movies reducer and action generator
+//--------------------
+
+
+let nextMovieId= 1 ;
 let moviesReducer = (state = [] ,action) => {
   switch (action.type) {
     case 'ADD_MOVIE' : 
@@ -109,6 +87,23 @@ let moviesReducer = (state = [] ,action) => {
       return state; 
   }
 }
+
+let addMovie = (title, genre) => {
+  return {
+    type: 'ADD_MOVIE',
+    title,
+    genre
+  }
+}
+
+let removeMovie = (id) => {
+  return {
+    type: 'REMOVE_MOVIE',
+    id
+  }
+}
+
+//---------------------------
 
 let reducer = redux.combineReducers({
   name: nameReducer ,
@@ -133,47 +128,21 @@ console.log('currentState', currentState);
 
 
 
-store.dispatch({
-  type:'CHANGE_NAME',
-  name: 'fadela'
-});
+store.dispatch(changeName('fadela'));
 
-store.dispatch({
-  type: 'ADD_HOBBY',
-  hobby: 'Running'
-});
+store.dispatch(addHobby('Running'));
 
-store.dispatch({
-  type: 'ADD_HOBBY',
-  hobby: 'walking'
-});
+store.dispatch(addHobby('Walking'));
 
-store.dispatch({
-  type: 'REMOVE_HOBBY',
-  id: 2
-})
+store.dispatch(removeHobby(2))
 
-store.dispatch({
-  type: 'CHANGE_NAME',
-  name: 'Emily'
-});
+store.dispatch(changeName('Emily'));
 
-store.dispatch ({
-  type: 'ADD_MOVIE',
-  title: 'Jumanji',
-  genre: 'Action'
-});
+store.dispatch(addMovie('Jumanji', 'Action'));
+ 
+store.dispatch(addMovie('Star wars', 'Action'));
 
-store.dispatch({
-  type: 'ADD_MOVIE',
-  title: 'Friends',
-  genre: 'Action'
-});
-
-store.dispatch({
-  type: 'REMOVE_MOVIE',
-  id: 1
-});
+store.dispatch(removeMovie(1));
 
 
 
